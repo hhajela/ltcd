@@ -1,51 +1,49 @@
 #include <iostream>
-#include <algorithm>
-#include <vector>
-#include <cstdlib>
+#include <string>
 #include <unordered_map>
+#include <vector>
 
 using namespace std;
 
 class Solution
 {
-    public:
-    
-    string MostBookedRoom(vector<string> vecBookings)
-    {
-        //keep track of bookings of each room
-        //return max booked room
-        unordered_map<string,int> mapBookings;
-        
-        
-        string maxBookedRoom = vecBookings[0].substr(1,2);
-        
-        for(string & booking : vecBookings)
-        {
-            if (booking[0] == '-')
-                continue;
-            
-            mapBookings[booking.substr(1,2)]++;
-            
-            if (mapBookings[booking.substr(1,2)] > mapBookings[maxBookedRoom])
-            {
-                //update most booked room
-                maxBookedRoom = booking.substr(1,2);
-            }
-            else if (mapBookings[booking.substr(1,2)] == mapBookings[maxBookedRoom])
-            {
-                //pick lexicographically greater one
-                maxBookedRoom = maxBookedRoom.compare(booking.substr(1,2)) < 0 ? maxBookedRoom :booking.substr(1,2);
-            }
-        }
-        
-        return maxBookedRoom;
-    }
-    
+	public:
+
+	string MostBookedRoom(const vector<string>& vecBookings)
+	{
+		//store occurrences of all rooms in map
+		//keep track of most booked room
+		//
+		if(vecBookings.empty()) return "";
+		
+		string mostBooked = vecBookings[0].substr(1,2);
+		unordered_map<string,int> mapBookings;
+
+		for(auto & strBooking : vecBookings)
+		{
+			if (strBooking[0] == '-') continue;
+
+			string booking = strBooking.substr(1,2);
+
+			mapBookings[booking]++;
+
+			if (mapBookings[booking] > mapBookings[mostBooked])
+				mostBooked = booking;
+			else if (mapBookings[booking] == mapBookings[mostBooked])
+			{
+				//pick lexicographically smaller
+
+				mostBooked = booking.compare(mostBooked) < 0 ? booking : mostBooked;
+			}
+		}
+
+		return mostBooked;
+	}
 };
 
 int main()
 {
     vector<string> vecBookings = {"+1A", "+3E", "-1A", "+4F", "+1A", "-3E"};
     Solution S1;
-    cout << S1.MostBookedRoom(vecBookings);
+    cout << S1.MostBookedRoom(vecBookings) << endl;
 }
