@@ -36,8 +36,6 @@ public class LongestRepeatingSubsequence
 				}
 			}
 		}
-
-		System.out.println(bestLen);
 		
 		char[] result = new char[bestLen];
 		int l = bestLen-1;
@@ -46,11 +44,12 @@ public class LongestRepeatingSubsequence
 		while(i>=0 && j>=0)
 		{
 			//check if chars match
-			if (str1.charAt(i)==str1.charAt(j))
+			if (str1.charAt(i)==str1.charAt(j) && i!=j)
 			{
-				result[l--] = str1.charAt(i);
+				result[l] = str1.charAt(i);
 				i--;
 				j--;
+				l--;
 			}
 			else
 			{
