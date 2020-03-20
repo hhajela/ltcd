@@ -40,7 +40,7 @@ public class LIS
 				//it has to be greater than jth
 				//and the score obtained from adding i to jth lis
 				//should be greater than current best
-				if(nums[i]>=nums[j] && subs[i]<subs[j]+1)
+				if(nums[i]>nums[j] && subs[i]<subs[j]+1)
 				{
 					subs[i]= subs[j]+1;
 				}

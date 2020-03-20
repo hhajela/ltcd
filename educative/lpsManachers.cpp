@@ -41,7 +41,7 @@ string LPS(const string & strInput)
 
             int i_ = 2*curCenter - i; //mirror image of i around curCenter
 
-	    if(vecLengths[i_] < r-i-1) //length of palindrome at i within the distance from i to bound-1
+	    if(vecLengths[i_] < r-i) //length of palindrome at i within the distance from i to bound-1
 	    {
 		    vecLengths[i] = vecLengths[i_];
 		    m= -1; //set to -1 to prevent walking
