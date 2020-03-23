@@ -17,11 +17,9 @@ vector<int> SpiralTraversal(vector<vector<int>> matrix)
 
 	vector<int> vecSpiral;
 
-	while(true)
+	//while steps available
+	while((movHz ? hzMaxSteps : vtMaxSteps) > 0)
 	{
-		//no more steps available
-		if( (movHz ? hzMaxSteps : vtMaxSteps) <= 0)
-			break;
 
 		//move ahead available number of steps in the correct direction
 		if (movHz)
